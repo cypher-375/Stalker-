@@ -42,7 +42,7 @@ class RelicForge:
         return ''.join(random.choices(charset, k=length))
 
     def generate_human_pass(self, length):
-        words = ["sayantani", "queen", "march", "shadow", "ruby", "black", "dps"]
+        words = ["queen", "march", "shadow", "ruby", "black", "dps"]
         separators = ["_", ".", "-", ""]
         suffixes = ["99", "21", "88", "2025"]
         word = random.choice(words)
