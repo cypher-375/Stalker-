@@ -1,15 +1,23 @@
 import random
 
 class RelicForge:
-    def __init__(self):
+    def __init__(self, info_file=None):
         self.general = []
         self.higher_chance = []
-        self.target_data = {
-            "name": "sayantani",
-            "birth_year": "1999",
-            "nickname": "queen",
-            "month": "march"
-        }
+        self.target_data = self.load_target_data(info_file)
+
+    def load_target_data(self, path):
+        data = {}
+        if path:
+            try:
+                with open(path, "r") as f:
+                    for line in f:
+                        if "=" in line:
+                            key, value = line.strip().split("=", 1)
+                            data[key.strip()] = value.strip()
+            except Exception as e:
+                print(f"[!] Failed to load info file: {e}")
+        return data
 
     def generate_passlists(self, count, length_range, style="random"):
         self.generate_higher_chance_passes()
