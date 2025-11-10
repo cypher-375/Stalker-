@@ -10,6 +10,7 @@ def main():
     gen.add_argument("-n", type=int, required=True, help="Number of passwords")
     gen.add_argument("-len", nargs=2, type=int, required=True, help="Min and max length")
     gen.add_argument("--style", choices=["human", "random"], default="random", help="Choose password style")
+    gen.add_argument("--info", type=str, help="Path to target info file (.txt)")
 
     args = parser.parse_args()
 
@@ -24,7 +25,7 @@ def main():
                                 __/ |
                                |___/   by Hexr
         """)
-        forge = RelicForge()
+        forge = RelicForge(info_file=args.info)
         forge.generate_passlists(args.n, tuple(args.len), style=args.style)
         forge.save_passlists("txt")
         print(f"[+] Generated {args.n} passwords with style '{args.style}' and saved to higher_chance_passlist.txt and general_passlist.txt")
